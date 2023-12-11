@@ -1,12 +1,12 @@
-name: PRECORIA front-end server-side tests
+name: PRECORSIA front-end server-side tests
 on:
   push:
     branches:
       - main
 
 jobs:
-  build-PRECORIA:
-    name: Build PRECORIA
+  build-PRECORSIA:
+    name: Build PRECORSIA
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -21,9 +21,9 @@ jobs:
       run: |
         npm install
 
-  test-PRECORIA:
-    name: Test PRECORIA
-    needs: build-PRECORIA
+  test-PRECORSIA:
+    name: Test PRECORSIA
+    needs: build-PRECORSIA
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
