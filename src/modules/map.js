@@ -19,3 +19,5 @@ function segment(points, target_area) {
     const centroids = grid.features.map(cell => centroid(cell));
     return centroids;
 }
+
+export { segment };
