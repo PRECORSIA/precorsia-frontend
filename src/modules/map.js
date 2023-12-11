@@ -1,8 +1,21 @@
-import { point, distance as _distance } from '@turf/turf';
+import { 
+  area as _area, 
+  bbox as _bbox, 
+  bboxPolygon as _bboxPolygon, 
+  centroid, 
+  polygon as _polygon, 
+  squareGrid 
+} from '@turf/turf';
 
-const pointA = point([-120.9857, 2.7484]);
-const pointB = point([-100.2437, -2.052]);
+function segment(points, target_area) {
+    
+    const polygon = _polygon([points]);
+    const bbox = _bbox(polygon);
 
-const distance = _distance(pointA, pointB, { units: 'miles' });
+    const cellSize = target_area / 1000;
+    const grid = squareGrid(bbox, cellSize, { units: 'kilometers' });
 
-console.log(`Distance between A and B: ${distance} miles`);
+    // Find the centroid of each cell and store them in an array
+    const centroids = grid.features.map(cell => centroid(cell));
+    return centroids;
+}
