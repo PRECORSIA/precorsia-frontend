@@ -5,8 +5,8 @@ on:
       - main
 
 jobs:
-  build-todo-app:
-    name: PRECORSIA front-end server-side tests
+  build-PRECORIA:
+    name: Build PRECORIA
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -17,7 +17,29 @@ jobs:
       with: 
         node-version: '14'
     
-    - name: Build and test
+    - name: Build
       run: |
         npm install
+
+  test-PRECORIA:
+    name: Test PRECORIA
+    needs: build-PRECORIA
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Configure nodejs
+      uses: actions/setup-node@v2
+      with: 
+        node-version: '14'
+    
+    - name: Test
+      run: |
         npm run test
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: mochawesome-report
+        path: mochawesome-report/
