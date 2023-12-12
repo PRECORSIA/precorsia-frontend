@@ -7,7 +7,7 @@
   "scripts": {
     "test": "mocha",
     "test:report": "mocha --reporter mochawesome || true",
-    "start": "node src/main.js"
+    "start": "node src/index.js"
   },
   "dependencies": {
     "@turf/turf": "^6.5.0",
