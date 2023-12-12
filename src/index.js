@@ -10,6 +10,9 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
 
+import { segment } from './modules/map.js';
+import { log } from 'console';
+
 const app = express();
 const port = process.env.PORT || 80;
 
@@ -19,6 +22,16 @@ const publicPath = join(currentDir, '..', 'public');
 
 app.get('/', (req, res) => {
     res.sendFile(join(publicPath, 'index.html'));
+});
+
+app.use(express.json());
+app.post('/segment', (req, res) => {
+
+    const points = req.body.points;
+    const target_area = req.body.target_area;
+
+    const centroids = segment(points, target_area);
+    res.send({centroids: centroids});
 });
 
 app.use(express.static(publicPath));
