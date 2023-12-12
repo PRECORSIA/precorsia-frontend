@@ -13,14 +13,20 @@ function segment(points, target_area) {
         return [];
     }
 
+    const firstPoint = points[0];
+    const lastPoint = points[points.length - 1];
+    if (firstPoint[0] !== lastPoint[0] || firstPoint[1] !== lastPoint[1]) {
+        points.push(firstPoint);
+    }
+
     const polygon = _polygon([points]);
     const bbox = _bbox(polygon);
 
     const polygonArea = _area(polygon);
-    if (polygonArea > 3774873.7) {
+    if (polygonArea > 75497474) {
         return [];
     }
-
+    
     const cellSize = target_area / 1000;
     const grid = squareGrid(bbox, cellSize, { units: 'kilometers' });
 
