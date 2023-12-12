@@ -36,4 +36,6 @@ npm run test:report
 
 Após a execução, um relatório em HTML será gerado no diretório `mochawesome-report`.
 
-### Link do vídeo no Youtube
+## Link do vídeo no Youtube
+
+[![Precorsia - Frontend](https://img.youtube.com/vi/pMoZsPV3SKs/0.jpg)](https://youtu.be/pMoZsPV3SKs)
